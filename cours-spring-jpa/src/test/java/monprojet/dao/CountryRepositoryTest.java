@@ -7,6 +7,9 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import monprojet.entity.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
@@ -54,6 +57,19 @@ public class CountryRepositoryTest {
         assertEquals(populationPays1, nombre1, "On doit trouver 12 habitants");
         assertEquals(populationPays2, nombre2, "On doit trouver 18 habitants");
         assertEquals(populationPays3, nombre3, "On doit trouver 27 habitants");
+
+    }
+
+    @Test
+    void onSaitCompterLaPopulationDeTousLesPays() {
+        log.info("On compte la population d'un pays");
+        Map<String, Integer> mapV = new HashMap<>();
+        mapV.put("France", 12);
+        mapV.put("United Kingdom", 18);
+        mapV.put("United States of America", 27);
+        Map<String, Integer> mapE = countryDAO.listePopulationPays();
+
+        assertEquals(mapV, mapE, "Les 2 maps ne correspondent pas");
 
     }
 

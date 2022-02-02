@@ -1,6 +1,6 @@
 package monprojet;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +39,8 @@ public class ConsoleApp implements CommandLineRunner {
 
         Integer pop = countryDAO.population(2);
         System.out.println("La population du pays avec l'id 2 vaut : "+pop);
+        Map<String,Integer> liste = countryDAO.listePopulationPays();
+        System.out.println(liste);
 
         log.info("On ajoute un nouvel enregistrement");
         Country espagne = new Country("ES", "España");
